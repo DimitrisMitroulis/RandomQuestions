@@ -153,14 +153,14 @@
             alert("Pleas select an option!");
         }
 
-        if (ans.toString() === jsonData[random].answer.toString()) {
-            document.getElementById("FeedbackTxt").innerHTML = "CORRECT";
-            document.getElementById("FeedbackTxt").style.color = "#35912f";
+    if (ans.toString() === jsonData[random].answer.toString()) {
+        document.getElementById("FeedbackTxt").innerHTML = "CORRECT";
+        document.getElementById("FeedbackTxt").style.color = "#35912f";
 
 
-        } else {
-            document.getElementById("FeedbackTxt").innerHTML = "FALSE, the correct one was "+ jsonData[random].answer.toString();
-            document.getElementById("FeedbackTxt").style.color = "#fc1f1f";
+    } else {
+        document.getElementById("FeedbackTxt").innerHTML = "FALSE, the correct one was "+ jsonData[random].answer.toString();
+        document.getElementById("FeedbackTxt").style.color = "#fc1f1f";
         }
     }
 
