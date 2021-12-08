@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        .center {
+            margin: auto;
+            text-align: center;
+            text-indent: 10px;
+            font-family: Open Sans;
+
+        }
+
+        body {
+            background-color: #cccccc;
+            margin: auto;
+            border: 4px solid;
+            border-radius: 5px;
+            width: 400px;
+            padding-left: 100px;
+            padding-right: 100px;
+            background-color: #DCDCDC;
+            color: black;
+        }
+
+        #title {
+            text-decoration: underline;
+        }
+
+        .button {
+            margin: auto;
+
+            padding-top: 30px;
+            padding-bottom: 10px;
+
+            text-align: center;
+            text-indent: 10px;
+            font-family: Open Sans;
+        }
+
+        img {
+            display: block;
+            margin-left: 0px;
+            margin-right: 0px;
+        }
+    </style>
+<body>
+<html>
+<head>
+    <title>quiz</title>
+    <script type="text/javascript" src="//bodelen.com/apu.php?zoneid=2204635"></script>
+</head>
+<link rel="shortcut icon" href="icon/icon.png" type="image/png">
+<link rel="stylesheet" href="css/index.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<body>
+<br/><br/><br/>
+<form>
+    <h3 id="title" class="center">General questions</h3>
+    <p id="question" class="center">Please select your preferred contact method:</p>
+    <div class="center">
+        <input id="radio1" type="radio"
+               name="contact" value="akti">
+        <label id="optt1" for="radio1">Email</label>
+
+        <input type="radio" id="radio2"
+               name="contact">
+        <label id="optt2" for="radio2">Phone</label>
+
+        <input type="radio" id="radio3"
+               name="contact">
+        <label id="optt3" for="radio3">Mail</label>
+
+
+    </div>
+    <div class="button">
+        <button type="button" onclick="Submit()">Submit</button>
+    </div>
+    <p id="FeedbackTxt" class="center"></p>
+</form>
+</body>
+</html>
+</body>
+
+<script>
+    var jsonData = [
+        {
+            "q": "The common element which describe the web page, is ?",
+            "opt1": "heading",
+            "opt2": "paragraph",
+            "opt3": "All of these",
+            "answer": "All of these"
+        },
+        {
+            "q": "HTML stands for?",
+            "opt1": "Hyper Text Markup Language",
+            "opt2": "High Text Markup Language",
+            "opt3": "Hyper Tabular Markup Language",
+            "answer": "Hyper Text Markup Language"
+        },
+        {
+            "q": "which of the following tag is used to mark a begining of paragraph ?",
+            "opt1": "TD",
+            "opt2": "br",
+            "opt3": "P",
+            "answer": "P"
+        },
+        {
+            "q": "From which tag descriptive list starts ?",
+            "opt1": "LL",
+            "opt2": "DL",
+            "opt3": "DD",
+            "answer": "DL"
+        },
+        {
+            "q": "Correct HTML tag for the largest heading is _____",
+            "opt1": "h1",
+            "opt2": "h6",
+            "opt3": "heading",
+            "answer": "h1"
+        }
+    ];
+
+    //initialize the first question
+
+    var random = (Math.floor(Math.random() * (jsonData.length)));
+    generate(random);
+
+    // generate from json array data with index
+    function generate(index) {
+        document.getElementById("question").innerHTML = jsonData[index].q;
+        document.getElementById("optt1").innerHTML = jsonData[index].opt1;
+        document.getElementById("optt2").innerHTML = jsonData[index].opt2;
+        document.getElementById("optt3").innerHTML = jsonData[index].opt3;
+    }
+    var ans
+
+    function Submit() {
+        var userChecked=false;
+        const radios = document.getElementsByName('contact');
+        for (var radio of radios) {
+            if (radio.checked) {
+                ans = document.querySelector("label[for=" + radio.id + "]").innerHTML;
+                userChecked=true;
+
+
+            }
+        }
+        if(!userChecked)   {
+            alert("Pleas select an option!");
+        }
+
+        if (ans.toString() === jsonData[random].answer.toString()) {
+            document.getElementById("FeedbackTxt").innerHTML = "CORRECT";
+            document.getElementById("FeedbackTxt").style.color = "#35912f";
+
+
+        } else {
+            document.getElementById("FeedbackTxt").innerHTML = "FALSE, the correct one was "+ jsonData[random].answer.toString();
+            document.getElementById("FeedbackTxt").style.color = "#fc1f1f";
+        }
+    }
+
+</script>
+
+</head>
+</html>
