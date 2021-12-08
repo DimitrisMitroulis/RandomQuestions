@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<iframe src="https://drive.google.com/file/d/1lSlta_hoXExlZzCx0FoUTUuPgMExbITo/preview" width="300" height="100" allow="autoplay"></iframe>
+
+
+<form>
+    <p>Please select your preferred contact method:</p>
+    <div>
+        <input type="radio" id="contactChoice1"
+               name="contact" value="email">
+        <label for="contactChoice1">Email</label>
+        <input type="radio" id="contactChoice2"
+               name="contact" value="phone">
+        <label for="contactChoice2">Phone</label>
+        <input type="radio" id="contactChoice3"
+               name="contact" value="mail">
+        <label for="contactChoice3">Mail</label>
+    </div>
+    <div>
+        <button type="submit" >Submit</button>
+    </div>
+</form>
+
+
+
+<label id="fname">First name:</label>
+<script>
+
+    var form = document.querySelector("form");
+    //var log = document.querySelector("#log");
+
+    form.addEventListener("submit", function(event) {
+        var data = new FormData(form);
+        var output = "";
+        for (const entry of data) {
+            output =   entry[1];
+        }
+
+
+        //document.getElementById("fname").innerHTML = output;
+
+        if(output === "mail"){
+            document.getElementById("fname").innerHTML = "congrats";
+
+        }else{
+            document.getElementById("fname").innerHTML = "fail";
+        }
+
+        event.preventDefault();
+    }, false);
+
+    function Submit()
+    {
+        $("input[name='age']:checked").val();
+        document.getElementById("fname").innerHTML = "yes";
+    }
+
+</script>
+
+</body>
+</html>
