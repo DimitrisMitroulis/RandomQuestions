@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+
+<body>
+<form>
+    <h3 id="title" class="center">General questions</h3>
+    <p id="Question" class="center">Please select your preferred contact method:</p>
+    <div class="center">
+        <input id="radio1" type="radio"
+               name="contact" value="akti">
+        <label id="Choice1" for="radio1">Email</label>
+
+        <input type="radio" id="radio2"
+               name="contact">
+        <label id="Choice2" for="radio2">Phone</label>
+
+        <input type="radio" id="radio3"
+               name="contact">
+        <label id="Choice3" for="radio3">Mail</label>
+
+
+    </div>
+    <div class="button">
+        <button type="button" onclick="Submit()">Submit</button>
+    </div>
+    <p id="FeedbackTxt" class="center"></p>
+</form>
+<!--<img src="https://cdn.britannica.com/40/199840-131-F5176574/Macro-sheet-music.jpg" alt="classical Music" style="width:40%">-->
+</body>
+
+<script>
+
+    const jsonData = [
+        {
+            "q": "Which of these is NOT the subtitle of a Haydn symphony?",
+            "opt1": "Hornsignal",
+            "opt2": "Lamentatione",
+            "opt3": "Tragic",
+            "answer": "Tragic"
+        },
+        {
+            "q": "Which of Elgar's Enigma Variations was partially inspired by a bulldog?",
+            "opt1": "Variation XI (G.R.S.)",
+            "opt2": "Variation I (C.A.E.)",
+            "opt3": "Variation XII (B.G.N)",
+            "answer": "Variation XI (G.R.S.)"
+        },
+        {
+            "q": "Where was cellist Jaqueline du Pré born?",
+            "opt1": "Cheltenham",
+            "opt2": "Oxford",
+            "opt3": "Cambridge",
+            "answer": "Oxford"
+        },
+        {
+            "q": "Which conductor always appeared on the podium wearing a white carnation?",
+            "opt1": "Sir Thomas Beecham",
+            "opt2": "Sir Malcolm Sargent",
+            "opt3": "Sir Henry Wood",
+            "answer": "Sir Malcolm Sargent"
+        },
+        {
+            "q": "How old was Giuseppe Verdi when he wrote his Requiem?",
+            "opt1": "60",
+            "opt2": "50",
+            "opt3": "70",
+            "answer": "60"
+        }
+        , {
+            "q": "What is the name given to the lower register of the clarinet's playing range?",
+            "opt1": "Chalumeau",
+            "opt2": "Thalumeau",
+            "opt3": "Shalumeau",
+            "answer": "Chalumeau"
+        }
+        , {
+            "q": "What did Benjamin Britten use to simulate raindrops in his opera for amateur musicians, Noye's Fludd?",
+            "opt1": "Pipettes and buckets",
+            "opt2": "Empty baked beans tins",
+            "opt3": "Teacups on a string",
+            "answer": "Teacups on a string"
+        }
+        , {
+            "q": "Who wrote a piece called the 'Skittle Alley Trio'?",
+            "opt1": "Wolfgang Amadeus Mozart",
+            "opt2": "George Gershwin",
+            "opt3": "Leonard Bernstein",
+            "answer": "Wolfgang Amadeus Mozart"
+        }
+        , {
+            "q": "In French opera houses, what job does the Souffler have?",
+            "opt1": "To encourage applause",
+            "opt2": "Prompter",
+            "opt3": "First aider",
+            "answer": "Prompter"
+        }
+        , {
+            "q": "What is Simon Rattle's middle name?",
+            "opt1": "Denis",
+            "opt2": "David",
+            "opt3": "Derek",
+            "answer": "Denis"
+        }
+        , {
+            "q": "What subtitle goes with Gilbert & Sullivan's operetta 'The Pirates of Penzance'?",
+            "opt1": "The Witch's Curse",
+            "opt2": "The Lass That Loved A Sailor",
+            "opt3": "The Slave Of Duty",
+            "answer": "The Slave Of Duty"
+        }
+        , {
+            "q": "Which composer wrote two piano concertos, one violin concerto and one double concerto for violin and cello?",
+            "opt1": "Beethoven",
+            "opt2": "Brahms",
+            "opt3": "Bach",
+            "answer": "Brahms"
+        }, {
+            "q": "In which country was Delibes' opera 'Lakmé' set?",
+            "opt1": "Ceylon",
+            "opt2": "Burma",
+            "opt3": "India",
+            "answer": "India"
+        }
+        , {
+            "q": "Which of these vehicles did Herbert Von Karajan NOT appear with on the cover of one of his recordings?",
+            "opt1": "Airplane",
+            "opt2": "Boat",
+            "opt3": "Hovercraft",
+            "answer": "Hovercraft"
+        }
+        , {
+            "q": "How many Ballades did Chopin write?",
+            "opt1": "4",
+            "opt2": "12",
+            "opt3": "23",
+            "answer": "4"
+        }
+        , {
+            "q": "Which of these actors has NOT played Beethoven on screen?",
+            "opt1": "John Belushi",
+            "opt2": "Simon Callow",
+            "opt3": "Ed Harris",
+            "answer": "Simon Callow"
+        }
+        , {
+            "q": "In Purcell's 'Dido and Aeneas', where is Dido Queen of?",
+            "opt1": "Carthage",
+            "opt2": "Egypt",
+            "opt3": "Troy",
+            "answer": "Carthage"
+        }
+        , {
+            "q": "In which year did Sydney Opera House open?",
+            "opt1": "1971",
+            "opt2": "1972",
+            "opt3": "1973",
+            "answer": "1973"
+        }, {
+            "q": "Which of these composers was given the title of Master of the Queen's Music?",
+            "opt1": "W.S. Gilbert",
+            "opt2": "Sir Walter Parratt",
+            "opt3": "Frank Bridge",
+            "answer": "Sir Walter Parratt"
+        }, {
+            "q": "Which of these artists did NOT perform with Luciano Pavarotti during his lifetime?",
+            "opt1": "Sheryl Crow",
+            "opt2": "Celine Dion",
+            "opt3": "Madonna",
+            "answer": "Madonna"
+        }, {
+            "q": "Which of the following is an opera composed by Giacomo Puccini?",
+            "opt1": "Marriage of Figaro",
+            "opt2": "La Traviata",
+            "opt3": "Madame Butterfly",
+            "answer": "Madame Butterfly"
+        }
+        , {
+            "q": "Which form of musical articulation can you NOT play on a piano?",
+            "opt1": "Staccato",
+            "opt2": "Legato",
+            "opt3": "Pizzicato",
+            "answer": "Pizzicato"
+        }
+        , {
+            "q": "What is Mozart’s full name?",
+            "opt1": "Wolfgang Amadeus Mozart",
+            "opt2": "Ludwig van Mozart",
+            "opt3": "Johnan Sebastian Mozart",
+            "answer": "Wolfgang Amadeus Mozart"
+        }
+        , {
+            "q": "What is Symphony No. 9 in E minor by Antonín Dvořák more commonly known as?",
+            "opt1": "New World Symphony",
+            "opt2": "Pastoral Symphony",
+            "opt3": "Fantasia Sinfonica",
+            "answer": "New World Symphony"
+        }
+        , {
+            "q": "Ludwig van Beethoven was born in 1770 in which German city?",
+            "opt1": "Berlin",
+            "opt2": "Bonn",
+            "opt3": "Nuremberg",
+            "answer": "Bonn"
+        },{
+            "q": "Which composer was given the title of Master of the Queen’s Music",
+            "opt1": "Harold Darke",
+            "opt2": "Frank Bridge",
+            "opt3": "Sir Walter Parratt",
+            "answer": "Sir Walter Parratt"
+        }
+        ,{
+            "q": "How many ballades did the Polish composer Fryderyk Chopin compose during his life?",
+            "opt1": "0",
+            "opt2": "4",
+            "opt3": "13",
+            "answer": "4"
+        }
+        ,{
+            "q": "Which of the following happened to Ludwig van Beethoven in his later life?",
+            "opt1": "He became deaf",
+            "opt2": "His business went bankrupt",
+            "opt3": "He got divorced from his wife",
+            "answer": " He became deaf"
+        }
+        ,{
+            "q": "Which of the following musical instrument is often associated with Sir Yehudi Menuhin?",
+            "opt1": "Piano",
+            "opt2": "Cello",
+            "opt3": "Violin",
+            "answer": "Violin"
+        }
+        ,{
+            "q": "Piano belongs to which family of musical instruments?",
+            "opt1": "Percussion family",
+            "opt2": "Keyboard family",
+            "opt3": "Woodwind family",
+            "answer": "Keyboard family"
+        }
+        ,{
+            "q": "Which of the following is a group of 4 violin concerti written by Italian composer Antonio Vivaldi?",
+            "opt1": "The Four Cities",
+            "opt2": "The Four Years",
+            "opt3": "The Four Seasons",
+            "answer": "The Four Seasons"
+        }
+        ,{
+            "q": "Which prolific composer wrote more than 1100 musical works and had 20 children, 3 of whom were also musicians?",
+            "opt1": "Johann Sebastian Bach",
+            "opt2": "Johann Strauss",
+            "opt3": "Richard Wagner",
+            "answer": "Johann Sebastian Bach"
+        }];
+
+
+    var random = (Math.floor(Math.random() * (jsonData.length)));
+    generate(random);
+
+    // generate from json array data with index
+    function generate(index) {
+        document.getElementById("Question").innerHTML = jsonData[index].q;
+        document.getElementById("Choice1").innerHTML = jsonData[index].opt1;
+        document.getElementById("Choice2").innerHTML = jsonData[index].opt2;
+        document.getElementById("Choice3").innerHTML = jsonData[index].opt3;
+    }
+    function Submit() {
+        var radios = document.getElementsByName('contact');
+        var ans;
+        for (var radio of radios) {
+            if (radio.checked) {
+                ans = document.querySelector("label[for=" + radio.id + "]").innerHTML;
+
+
+            }
+        }
+        document.getElementById("FeedbackTxt").innerHTML = ans;
+
+        if (ans === jsonData[random].answer) {
+            document.getElementById("FeedbackTxt").innerHTML = "CORRECT";
+        } else{
+            document.getElementById("FeedbackTxt").innerHTML = "FALSE";
+        }
+    }
+</script>
+
+</head>
+</html>
